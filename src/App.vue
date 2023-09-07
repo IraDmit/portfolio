@@ -1,35 +1,31 @@
 <template>
   <div id="app">
     <the-header />
+    <the-main-screen />
+    <the-about />
+    <the-projects />
+    <the-contact />
+    <the-footer />
   </div>
 </template>
 
 <script>
+import TheAbout from "./components/the-about.vue";
+import TheContact from "./components/the-contact.vue";
+import TheMainScreen from "./components/the-main-screen.vue";
+import TheProjects from "./components/the-projects.vue";
+import TheFooter from "./navigation/the-footer.vue";
 import theHeader from "./navigation/the-header.vue";
 export default {
-  components: { theHeader },
+  components: {
+    theHeader,
+    TheMainScreen,
+    TheAbout,
+    TheProjects,
+    TheContact,
+    TheFooter,
+  },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<style lang="scss"></style>

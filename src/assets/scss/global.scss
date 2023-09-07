@@ -1,12 +1,25 @@
 @import "normalize.scss";
+@import "fonts.scss";
 
 ul {
   list-style: none;
+  margin: 0;
 }
 a {
   text-decoration: none;
+  color: unset;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.container {
+  padding: 50px;
+}
+
+body {
+  background-color: #0c0c0c;
+  color: #e9e9e9;
+  font-family: 'Space mono';
 }
