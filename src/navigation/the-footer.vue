@@ -32,7 +32,7 @@ export default {
       hours = date.getHours();
       minutes = this.editMinutes(date.getMinutes());
       this.time = hours + ":" + minutes;
-    }, 10000);
+    }, 60000);
   },
 };
 </script>
@@ -45,6 +45,9 @@ export default {
   .contacts{
     display: flex;
     gap: 20px;
+  }
+  @media (max-width: 375px) {
+    font-size: 14px;
   }
 }
 </style>

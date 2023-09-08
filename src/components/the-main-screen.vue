@@ -42,14 +42,13 @@ export default {};
       width: 100%;
       display: flex;
       .marquee {
-        // width: 100%;
+        animation: marquee 7s infinite linear forwards;
         font-size: 100px;
         line-height: 1.3;
         font-family: "Space mono";
         padding: 24px 0;
         color: #d72323;
         white-space: nowrap;
-        animation: marquee 7s infinite linear;
       }
     }
   }
@@ -57,6 +56,15 @@ export default {};
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap: 10px;
+    .txt:last-of-type {
+      text-align: right;
+    }
+    @media (max-width: 430px) {
+      .txt {
+        font-size: 14px;
+      }
+    }
   }
 }
 

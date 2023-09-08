@@ -1,7 +1,7 @@
 <template>
   <header class="container">
     <div class="header-wrp">
-      <div class="logo">Irina Dmitrieva</div>
+      <a href="#" class="logo">Ira Dmitrieva</a>
       <ul class="header-menu">
         <li class="links">
           <a href="#about">About</a>
@@ -41,6 +41,9 @@ header {
       font-size: 26px;
       background-color: #0c0c0c;
       backdrop-filter: blur(4px);
+      @media (max-width: 600px) {
+        font-size: 22px;
+      }
     }
     .header-menu {
       margin-left: auto;
@@ -48,6 +51,35 @@ header {
       display: flex;
       gap: 20px;
       backdrop-filter: blur(4px);
+    }
+    @media (max-width: 525px) {
+      .logo {
+        font-size: 16px;
+      }
+      .header-menu {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 425px) {
+      .logo {
+        font-size: 14px;
+      }
+      .header-menu {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 365px) {
+      ul{
+        padding: 0;
+      }
+      .logo {
+        font-size: 14px;
+        margin-right: 10px;
+      }
+      .header-menu {
+        gap: 13px;
+        font-size: 13.5px;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="main-section" id="contact">
     <div class="big-txt">Irina Dmitrieva</div>
-    <div class="mail glitch">alisagoodpirate@gmail.com</div>
+    <div class="glitch">alisagoodpirate@gmail.com</div>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {};
 
 <style lang="scss" scoped>
 .main-section {
-  height: 92vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,33 +28,89 @@ export default {};
       color: #d72323;
     }
   }
-  .mail {
-    font-size: 70px;
 
-    &.glitch {
+  .glitch {
+    color: #fff;
+    font-size: 70px;
+    position: relative;
+    padding: 30px;
+    &::before,
+    &::after {
+      content: "alisagoodpirate@gmail.com";
       color: #fff;
-      font-size: 70px;
-      position: relative;
+      position: absolute;
+      top: 0;
+      overflow: hidden;
       padding: 30px;
-      &::before,
-      &::after {
-        content: "alisagoodpirate@gmail.com";
-        color: #fff;
-        position: absolute;
-        top: 0;
-        overflow: hidden;
-        padding: 30px;
-      }
-      &::before {
-        left: 3px;
-        text-shadow: -3px 0 red;
-        animation: glitch-before 7s linear 0s infinite alternate;
-      }
-      &::after {
-        left: -3px;
-        text-shadow: -3px 0 blue;
-        animation: glitch-after 7s linear 0s infinite alternate;
-      }
+    }
+    &::before {
+      left: 3px;
+      text-shadow: -3px 0 red;
+      animation: glitch-before 7s linear 0s infinite alternate;
+    }
+    &::after {
+      left: -3px;
+      text-shadow: -3px 0 blue;
+      animation: glitch-after 7s linear 0s infinite alternate;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .glitch {
+      font-size: 55px;
+    }
+  }
+  @media (max-width: 890px) {
+    .glitch {
+      font-size: 45px;
+    }
+    .big-txt {
+      font-size: 170px;
+    }
+  }
+  @media (max-width: 768px) {
+    .glitch {
+      font-size: 40px;
+    }
+  }
+  @media (max-width: 680px) {
+    .big-txt {
+      font-size: 135px;
+    }
+    .glitch {
+      font-size: 35px;
+    }
+  }
+  @media (max-width: 576px) {
+    .glitch {
+      font-size: 26px;
+    }
+    .big-txt {
+      font-size: 115px;
+    }
+  }
+  @media (max-width: 450px) {
+    .glitch {
+      font-size: 22px;
+    }
+    .big-txt {
+      font-size: 100px;
+    }
+  }
+  @media (max-width: 390px) {
+    .glitch {
+      font-size: 18px;
+    }
+    .big-txt {
+      font-size: 85px;
+    }
+  }
+  @media (max-width: 320px) {
+    .glitch {
+      font-size: 16px;
+    }
+    .big-txt {
+      font-size: 70px;
     }
   }
 }
