@@ -18,7 +18,22 @@
 </template>
 
 <script>
-export default {};
+import Lenis from "@studio-freight/lenis";
+export default {
+  data() {
+    return {
+      lenis: new Lenis(),
+    };
+  },
+  methods: {
+    scroll(name) {
+      const scrollTarget = document.querySelector(name);
+      this.lenis.scrollTo(scrollTarget, {
+        duration: 2,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -51,6 +66,9 @@ header {
       display: flex;
       gap: 20px;
       backdrop-filter: blur(4px);
+      .links {
+        cursor: pointer;
+      }
     }
     @media (max-width: 525px) {
       .logo {
@@ -69,7 +87,7 @@ header {
       }
     }
     @media (max-width: 365px) {
-      ul{
+      ul {
         padding: 0;
       }
       .logo {

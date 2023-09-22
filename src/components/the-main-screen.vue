@@ -1,13 +1,10 @@
 <template>
   <div class="main-screen container">
     <div class="marquee-wrp">
-      <div class="introdusing">
-        <p class="marquee">Front-End Developer &nbsp;</p>
-        <p class="marquee">Front-End Developer &nbsp;</p>
-        <p class="marquee">Front-End Developer &nbsp;</p>
-        <p class="marquee">Front-End Developer &nbsp;</p>
-        <p class="marquee">Front-End Developer &nbsp;</p>
-        <p class="marquee">Front-End Developer &nbsp;</p>
+      <div class="introdusing" ref="marqueeWrp">
+        <!-- &nbsp; -->
+        <p class="marquee">Front-End Developer </p>
+        <p class="marquee1">Front-End Developer</p>
       </div>
     </div>
 
@@ -19,7 +16,20 @@
 </template>
 
 <script>
-export default {};
+import gsap from "gsap";
+export default {
+  mounted() {
+    const wrp = this.$refs.marqueeWrp;
+    const textWidth = document.querySelector(".marquee").clientWidth;
+    gsap.set(wrp, { x: 0 });
+    gsap.to(wrp, {
+      x: -textWidth,
+      repeat: -1,
+      duration: 5,
+      ease: "linear",
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -29,21 +39,21 @@ export default {};
   display: flex;
   align-items: flex-end;
   width: 100%;
-
   .marquee-wrp {
     top: 25%;
     left: 0;
+    overflow: hidden;
     position: absolute;
     width: 100%;
     .introdusing {
       width: 100%;
-      overflow: hidden;
-
       width: 100%;
       display: flex;
-      .marquee {
-        animation: marquee 7s infinite linear forwards;
-        font-size: 100px;
+      .marquee,
+      .marquee1 {
+        font-size: 163px;
+        // position: absolute;
+        left: 100%;
         line-height: 1.3;
         font-family: "Space mono";
         padding: 24px 0;
@@ -65,15 +75,6 @@ export default {};
         font-size: 14px;
       }
     }
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translate3d(5%, 0, 0);
-  }
-  to {
-    transform: translate3d(-25%, 0, 0);
   }
 }
 </style>

@@ -16,6 +16,7 @@ import TheMainScreen from "./components/the-main-screen.vue";
 import TheProjects from "./components/the-projects.vue";
 import TheFooter from "./navigation/the-footer.vue";
 import theHeader from "./navigation/the-header.vue";
+import Lenis from "@studio-freight/lenis";
 export default {
   components: {
     theHeader,
@@ -25,8 +26,24 @@ export default {
     TheContact,
     TheFooter,
   },
+  mounted() {
+    const lenis = new Lenis({
+      duration: 2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    // lenis.on("scroll", (e) => {
+    // console.log(e);
+    // });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    console.log(lenis);
+    requestAnimationFrame(raf);
+  },
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
