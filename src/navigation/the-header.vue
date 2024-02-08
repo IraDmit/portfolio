@@ -4,13 +4,13 @@
       <a href="#" class="logo">Ira Dmitrieva</a>
       <ul class="header-menu">
         <li class="links">
-          <a href="#about">About</a>
+          <a href="#about" @click.prevent="scrollToEl('#about')">About</a>
         </li>
         <li class="links">
-          <a href="#projects">Projects</a>
+          <a href="#projects" @click.prevent="scrollToEl('#projects')">Projects</a>
         </li>
         <li class="links">
-          <a href="#contact">Contact</a>
+          <a href="#contact" @click.prevent="scrollToEl('#contact')">Contact</a>
         </li>
       </ul>
     </div>
@@ -26,10 +26,12 @@ export default {
     };
   },
   methods: {
-    scroll(name) {
-      const scrollTarget = document.querySelector(name);
-      this.lenis.scrollTo(scrollTarget, {
-        duration: 2,
+    scrollToEl(id) {
+      const elem = document.querySelector(id);
+
+      window.scrollTo({
+        top: window.scrollY + elem.getBoundingClientRect().y,
+        behavior: "smooth",
       });
     },
   },
@@ -44,6 +46,7 @@ header {
   font-weight: 400;
   width: 100%;
   z-index: 10;
+  mix-blend-mode: difference;
   .header-wrp {
     display: flex;
     justify-content: space-between;
@@ -54,7 +57,7 @@ header {
       font-style: italic;
       color: #d72323;
       font-size: 26px;
-      background-color: #0c0c0c;
+      // background-color: #0c0c0c;
       backdrop-filter: blur(4px);
       @media (max-width: 600px) {
         font-size: 22px;
@@ -62,7 +65,7 @@ header {
     }
     .header-menu {
       margin-left: auto;
-      background-color: #0c0c0c;
+      // background-color: #0c0c0c;
       display: flex;
       gap: 20px;
       backdrop-filter: blur(4px);

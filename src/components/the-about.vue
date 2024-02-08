@@ -11,16 +11,19 @@
     <div class="second-row">
       <div class="col">
         <p>experience</p>
-        <div class="txt">My development experience is about a year</div>
+        <div class="txt">
+          My development experience is about a year. I also have about a year of
+          freelance experience.
+        </div>
       </div>
       <div class="col">
         <p>skills</p>
         <div class="txt">
           I have advanced knowledge of HTML, CSS and JavaScript. I have
-          experience with Vue.js 2 and Nuxt.js 2. I understand the principles of
-          responsive and adaptive design. Application development and support,
-          API integration, unit testing, responsive design. Knowledge of
-          development tools such as Webpack, Babel and Git.
+          experience with Vue.js (2,3) and Nuxt.js (2). I understand the
+          principles of responsive and adaptive design. Application development
+          and support, API integration, unit testing, responsive design.
+          Knowledge of development tools such as Webpack, Babel and Git.
         </div>
       </div>
     </div>

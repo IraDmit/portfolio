@@ -1,30 +1,22 @@
 <template>
-  <div class="container projects" id="projects">
-    <div class="project-wrp" ref="main">
-      <div class="frames" ref="innerWrp">
-        <a
-          class="frame"
-          v-for="(frame, i) in framesList"
-          :key="'frame' + i"
-          :class="frame.position"
-          :href="frame.link"
-        >
-          <component
-            :is="frame.type !== 'text' ? frame.type : ''"
-            :src="frame.src"
-            autoplay
-          ></component>
-          <template v-if="frame.type === 'text'">
-            <h2>
-              {{ frame.title }}
-            </h2>
-            <br />
-            <p>{{ frame.text }}</p>
-          </template>
-        </a>
+  <section class="box-section container" ref="main" id="projects">
+    <div class="box-wrp" ref="wrp" :style="{ '--gap': gap + 'px' }">
+      <div
+        class="box hover-text-one"
+        :style="{ '--boxWidth': boxWidth + 'px' }"
+        v-for="(frame, idx) in framesList"
+        :key="'frame' + idx"
+      >
+        <figure class="effect-text-four">
+          <img :src="frame.image" alt="" />
+          <figcaption>
+            <h3 class="title">{{ frame.title }}</h3>
+            <a :href="frame.link">Study Case &#8594;</a>
+          </figcaption>
+        </figure>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -37,166 +29,261 @@ export default {
     return {
       framesList: [
         {
-          type: "text",
           title: "HomeState",
           link: "https://iradmit.github.io/bprunsk56/",
           text: "",
+          image:
+            "https://budgetrf.ru/wp-content/uploads/2023/05/agenstvo-nedvizhimosti.jpeg",
         },
         {
-          type: "img",
-          link: "https://iradmit.github.io/bprunsk56/",
-          src: "https://budgetrf.ru/wp-content/uploads/2023/05/agenstvo-nedvizhimosti.jpeg",
-          position: "left",
-        },
-        {},
-        {
-          type: "text",
           title: "CreateX",
           link: "https://iradmit.github.io/createX/",
           text: "",
+          image:
+            "https://f.partnerkin.com/uploads/storage/files/file_1622032176.jpg",
         },
         {
-          link: "https://iradmit.github.io/createX/",
-          type: "img",
-          src: "https://f.partnerkin.com/uploads/storage/files/file_1622032176.jpg",
-          position: "left",
-        },
-        {},
-        {
-          type: "text",
           title: "ToDo List",
           link: "https://iradmit.github.io/todoList/",
           text: "",
+          image:
+            "https://www.amitree.com/wp-content/uploads/2021/08/the-pros-and-cons-of-paper-to-do-lists.jpeg",
         },
+
         {
-          link: "https://iradmit.github.io/todoList/",
-          type: "img",
-          src: "https://www.amitree.com/wp-content/uploads/2021/08/the-pros-and-cons-of-paper-to-do-lists.jpeg",
-          position: "left",
-        },
-        {},
-        {
-          type: "text",
           title: "Comics",
           link: "https://iradmit.github.io/comicsApp/",
           text: "",
+          image:
+            "https://www.biysk-liceum.ru/odarennie-deti/proekty/bertova_komix/images/history6.jpg",
         },
+
         {
-          link: "https://iradmit.github.io/comicsApp/",
-          type: "img",
-          src: "https://www.biysk-liceum.ru/odarennie-deti/proekty/bertova_komix/images/history6.jpg",
-          position: "left",
-        },
-        {},
-        {
-          type: "text",
           title: "3D Parallax",
           link: "https://iradmit.github.io/3D-paralax/",
           text: "",
+          image:
+            "https://орфографика.рф/800/600/https/s3.amazonaws.com/pbblogassets/uploads/2017/06/10130141/Parallax.jpg",
         },
+
         {
-          link: "https://iradmit.github.io/3D-paralax/",
-          type: "img",
-          src: "https://орфографика.рф/800/600/https/s3.amazonaws.com/pbblogassets/uploads/2017/06/10130141/Parallax.jpg",
-          position: "left",
+          title: "Hogwarts",
+          link: "https://iradmit.github.io/hogwarts/",
+          text: "",
+          image: "https://v1.popcornnews.ru/k2/news/1200/upload/AbQWau.jpg",
         },
       ],
-      frames: null,
-      zSpacing: -1000,
-      zVals: [],
+      boxesLength: null,
+      boxWidth: 800,
+      gap: 100,
     };
   },
   computed: {
-    depth() {
-      return {
-        "--depth":
-          (Math.abs(this.zSpacing) / 2.8) * this.framesList.length + "px",
-      };
+    width() {
+      return this.boxesLength * this.boxWidth;
     },
   },
   mounted() {
-    const frames = document.querySelectorAll(".frame");
-    this.zVals = Array.from({ length: frames.length }).map(
-      (_, i) => i * this.zSpacing + this.zSpacing
-    );
+    if (window.innerWidth < 880) this.boxWidth = 500;
+    if (window.innerWidth < 550) this.boxWidth = 350;
 
-    const mainWrp = this.$refs.main,
-      innerWrp = this.$refs.innerWrp;
+    if (window.innerWidth < 650) this.gap = 60;
 
-    const scrollZ = Math.abs(this.zVals[this.zVals.length - 1]);
-    gsap.to(innerWrp, {
-      translateZ: scrollZ,
+    const main = this.$refs.main,
+      wrp = this.$refs.wrp;
+    this.boxesLength = wrp.querySelectorAll(".box").length;
+    const elWidth = this.width + this.gap * (this.boxesLength - 1);
+
+    const totalWidth = elWidth - window.innerWidth + 120;
+
+    gsap.to(wrp, {
+      x: -totalWidth,
+      ease: "none",
       scrollTrigger: {
-        start: "top center",
-        scrub: 2,
-        pin: ".projects",
-        end: `${scrollZ}`,
-        trigger: mainWrp,
+        start: "top top",
+        scrub: true,
+        pin: true,
+        trigger: main,
+        end: this.width,
       },
-    });
-
-    frames.forEach((_, idx) => {
-      let frame = frames[idx],
-        transformZ = `translateZ(${this.zVals[idx]}px)`,
-        opacity = this.zVals[idx] < this.zSpacing / -1.7 ? 1 : 0;
-      frame.setAttribute(
-        "style",
-        `transform: ${transformZ}; opacity: ${opacity}`
-      );
     });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-:root {
-  --index: calc(1vw + 1vh);
-  --side-x: 26;
-  --side-y: 36;
-  --gutter: 30px;
-}
-img {
-  width: calc(var(--index) * var(--side-x));
-  height: calc(var(--index) * var(--side-y));
-}
-.wrp {
-  height: var(--depth);
-  font-size: calc(var(--index) * 0.8);
-}
-.project-wrp {
-  perspective: 1000px;
+figure {
+  margin: 0;
+  max-width: 800px;
   width: 100%;
-  min-height: 100%;
 }
-.container {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  .frames {
-    height: 100%;
-    transform-style: preserve-3d;
-    .frame {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      will-change: transform;
-      transition: 0.75s cubic-bezier(0.075, 0.5, 0, 1);
-      transform-style: preserve-3d;
+section {
+  height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+  width: 100vw;
 
-      &.left {
-        &:has(video) {
-          left: calc(var(--side-y) / 2 * var(--index) + var(--gutter));
+  &.box-section {
+    background-color: #0c0c0c;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .box-wrp {
+      display: flex;
+      gap: var(--gap);
+      // @media (max-width: 768px) {
+      //   display: grid;
+      //   grid-template-rows: repeat(2, 1fr);
+      // }
+      .box {
+        width: var(--boxWidth);
+
+        &.hover-text-one {
+          overflow: hidden;
+          list-style: none;
+          text-align: center;
         }
-        left: calc(var(--side-x) / 2 * var(--index) + var(--gutter));
+
+        &.hover-text-one figure {
+          position: relative;
+          z-index: 1;
+          display: inline-block;
+          overflow: hidden;
+
+          text-align: center;
+        }
+        &.hover-text-one figure img {
+          position: relative;
+          display: block;
+          min-height: 100%;
+        }
+        &.hover-text-one figure figcaption {
+          padding: 2em;
+          color: #fff;
+          text-transform: uppercase;
+          font-size: 1.25em;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+        &.hover-text-one figure figcaption::before,
+        &.hover-text-one figure figcaption::after {
+          pointer-events: none;
+        }
+        &.hover-text-one figure figcaption {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+        &.hover-text-one figure h3 {
+          word-spacing: -0.15em;
+          font-weight: 300;
+        }
+        &.hover-text-one figure h3 span {
+          font-weight: 800;
+        }
+        &.hover-text-one figure h3,
+        &.hover-text-one figure a {
+          margin: 0;
+        }
+        &.hover-text-one figure a {
+          letter-spacing: 1px;
+          font-size: 68.5%;
+        }
+
+        /* Эффект при наведении */
       }
-      &.right {
-        &:has(video) {
-          left: calc(var(--side-y) / 2 * var(--index) + var(--gutter));
+
+      figure.effect-text-four::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        border-radius: 5px;
+        transition: all 0.5s ease;
+        width: 100%;
+      }
+
+      figure.effect-text-four figcaption {
+        text-align: right;
+        background-color: rgba(0, 0, 0, 0.3);
+        position: relative;
+        &::before {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 0;
+          background-color: rgba(0, 0, 0, 0.6);
+          transition: all 0.3s;
         }
-        right: calc(var(--side-x) / 2 * var(--index) + var(--gutter));
+      }
+
+      figure.effect-text-four figcaption:hover::before {
+        height: 100%;
+      }
+
+      figure.effect-text-four h3,
+      figure.effect-text-four a {
+        position: absolute;
+        right: 30px;
+        left: 30px;
+        padding: 10px 0;
+      }
+      figure.effect-text-four a {
+        bottom: 30px;
+        line-height: 1.5;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+      }
+      figure.effect-text-four h3 {
+        top: 30px;
+        -webkit-transition: -webkit-transform 0.35s;
+        transition: transform 0.35s;
+        -webkit-transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 20px, 0);
+      }
+      figure.effect-text-four:hover h3 {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+      figure.effect-text-four h3::after {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #fff;
+        content: "";
+        -webkit-transform: translate3d(0, 40px, 0);
+        transform: translate3d(0, 40px, 0);
+      }
+      figure.effect-text-four h3::after,
+      figure.effect-text-four a {
+        opacity: 0;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+      }
+      figure.effect-text-four:hover h3::after,
+      figure.effect-text-four:hover a {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        @media (max-width: 880px) {
+          height: 300px;
+        }
+        @media (max-width: 550px) {
+          height: 500px;
+        }
       }
     }
   }
