@@ -1,7 +1,7 @@
 <template>
   <div class="about-wrp container" id="about">
     <div class="first-row">
-      <div class="about">
+      <div class="about" ref="about">
         Hello! My name is Irina Dmitrieva, I'm a front-end developer from
         Togliatti, Russia. I like to create responsive and performant and
         visually pleasing websites.
@@ -9,14 +9,14 @@
       <p>about</p>
     </div>
     <div class="second-row">
-      <div class="col">
+      <div class="col" ref="experience">
         <p>experience</p>
         <div class="txt">
           My development experience is about a year. I also have about a year of
           freelance experience.
         </div>
       </div>
-      <div class="col">
+      <div class="col" ref="skills">
         <p>skills</p>
         <div class="txt">
           I have advanced knowledge of HTML, CSS and JavaScript. I have
@@ -31,7 +31,61 @@
 </template>
 
 <script>
-export default {};
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+export default {
+  mounted() {
+    gsap.fromTo(
+      this.$refs.skills,
+      {
+        xPercent: 100,
+        opacity: 0
+      },
+      {
+        xPercent: 0,
+        duration: 2.5,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".about-wrp",
+          start: "top bottom",
+        },
+      }
+    );
+    gsap.fromTo(
+      this.$refs.experience,
+      {
+        xPercent: -100,
+        opacity: 0
+      },
+      {
+        xPercent: 0,
+        duration: 2.5,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".about-wrp",
+          start: "top bottom",
+        },
+      }
+    );
+    gsap.fromTo(
+      this.$refs.about,
+      {
+        xPercent: 100,
+        opacity: 0
+      },
+      {
+        xPercent: 0,
+        duration: 2.5,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".about-wrp",
+          start: "top bottom",
+        },
+      }
+    );
+  },
+};
 </script>
 
 <style lang="scss" scoped>
