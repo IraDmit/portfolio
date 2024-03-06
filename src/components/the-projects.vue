@@ -11,7 +11,7 @@
           <img :src="frame.image" alt="" />
           <figcaption>
             <h3 class="title">{{ frame.title }}</h3>
-            <a :href="frame.link">Study Case &#8594;</a>
+            <a :href="frame.link">{{ $t("studyCase") }} &#8594;</a>
           </figcaption>
         </figure>
       </div>

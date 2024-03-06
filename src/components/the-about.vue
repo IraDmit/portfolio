@@ -2,28 +2,21 @@
   <div class="about-wrp container" id="about">
     <div class="first-row">
       <div class="about" ref="about">
-        Hello! My name is Irina Dmitrieva, I'm a front-end developer from
-        Togliatti, Russia. I like to create responsive and performant and
-        visually pleasing websites.
+        {{ $t("helloTxt") }}
       </div>
-      <p>about</p>
+      <p>{{ $t("about").toUpperCase() }}</p>
     </div>
     <div class="second-row">
       <div class="col" ref="experience">
-        <p>experience</p>
+        <p>{{ $t("experience").toUpperCase() }}</p>
         <div class="txt">
-          My development experience is about a year. I also have about a year of
-          freelance experience.
+          {{ $t("expTxt") }}
         </div>
       </div>
       <div class="col" ref="skills">
-        <p>skills</p>
+        <p>{{ $t("skills").toUpperCase() }}</p>
         <div class="txt">
-          I have advanced knowledge of HTML, CSS and JavaScript. I have
-          experience with Vue.js (2,3) and Nuxt.js (2). I understand the
-          principles of responsive and adaptive design. Application development
-          and support, API integration, unit testing, responsive design.
-          Knowledge of development tools such as Webpack, Babel and Git.
+          {{ $t("skillsTxt") }}
         </div>
       </div>
     </div>
@@ -40,7 +33,7 @@ export default {
       this.$refs.skills,
       {
         xPercent: 100,
-        opacity: 0
+        opacity: 0,
       },
       {
         xPercent: 0,
@@ -56,7 +49,7 @@ export default {
       this.$refs.experience,
       {
         xPercent: -100,
-        opacity: 0
+        opacity: 0,
       },
       {
         xPercent: 0,
@@ -72,7 +65,7 @@ export default {
       this.$refs.about,
       {
         xPercent: 100,
-        opacity: 0
+        opacity: 0,
       },
       {
         xPercent: 0,

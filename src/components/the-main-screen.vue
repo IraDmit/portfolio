@@ -21,8 +21,8 @@
     </div>
 
     <div class="bottom">
-      <div class="txt">Available for <br />freelance projects</div>
-      <div class="txt">Live in <br />Togliatti, Russia</div>
+      <div class="txt" v-html="$t('avaliable')"></div>
+      <div class="txt" v-html="$t('city')"></div>
     </div>
   </div>
 </template>
@@ -234,7 +234,7 @@ export default {
         font-size: 80px;
         left: 100%;
         line-height: 1.3;
-        font-family: "Space mono";
+        font-family: "Fira Mono";
         padding: 24px 0;
         color: #d72323;
         white-space: nowrap;

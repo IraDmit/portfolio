@@ -1,7 +1,7 @@
 <template>
   <footer class="container">
     <div class="footer-wrp">
-      <div class="time">Now {{ time }}</div>
+      <div class="time">{{ $t("now") + " " + time }}</div>
       <ul class="contacts">
         <li class="contact"><a href="https://github.com/IraDmit">GitHub</a></li>
         <li class="contact"><a href="https://t.me/nfllex">Telegram</a></li>
@@ -42,7 +42,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .contacts{
+  .contacts {
     display: flex;
     gap: 20px;
   }
