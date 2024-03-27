@@ -72,6 +72,12 @@ export default {
           text: "",
           image: "https://v1.popcornnews.ru/k2/news/1200/upload/AbQWau.jpg",
         },
+        {
+          title: "Gallery",
+          link: "https://iradmit.github.io/gallery/",
+          text: "",
+          image: "https://s.44.ua/section/newsIcon/upload/images/news/icon/000/052/842/darya-tryfanava-ucnagwn4efu-unsplash_5fca32b7c47da.jpg",
+        },
       ],
       boxesLength: null,
       boxWidth: 800,
